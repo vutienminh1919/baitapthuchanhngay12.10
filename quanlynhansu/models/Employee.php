@@ -1,107 +1,91 @@
 <?php
+class Employee{
+    public string $firstName;
+    public string $lastName;
+    public string $birthDate;
+    public string $address;
+    public string $jobTitle;
 
-class Employee
-{
-    private $fristname;
-    private $lastname;
-    private $birthDate;
-    private $address;
-    private $jobTitle;
 
     /**
-     * @param $fristname
-     * @param $lastname
+     * @param $firstName
+     * @param $lastName
      * @param $birthDate
      * @param $address
      * @param $jobTitle
      */
-    public function __construct($fristname, $lastname, $birthDate, $address, $jobTitle)
+    public function __construct($firstName, $lastName, $birthDate, $address, $jobTitle)
     {
-        $this->fristname = $fristname;
-        $this->lastname = $lastname;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
         $this->birthDate = $birthDate;
         $this->address = $address;
-        $this->jobTilte = $jobTitle;
+        $this->jobTitle = $jobTitle;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFristname()
+
+    public function getFirstName(): string
     {
-        return $this->fristname;
+        return $this->firstName;
     }
 
-    /**
-     * @param mixed $fristname
-     */
-    public function setFristname($fristname): void
+
+    public function setFirstName($firstName): void
     {
-        $this->fristname = $fristname;
+        $this->firstName = $firstName;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastname()
+
+    public function getLastName(): string
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
-    /**
-     * @param mixed $lastname
-     */
-    public function setLastname($lastname): void
+
+    public function setLastName($lastName): void
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBirthDate()
+
+    public function getBirthDate(): string
     {
         return $this->birthDate;
     }
 
-    /**
-     * @param mixed $birthDate
-     */
+
     public function setBirthDate($birthDate): void
     {
         $this->birthDate = $birthDate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAddress()
+
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    /**
-     * @param mixed $address
-     */
+
     public function setAddress($address): void
     {
         $this->address = $address;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getJobTitle()
+
+    public function getJobTitle(): string
     {
-        return $this->jobTilte;
+        return $this->jobTitle;
     }
 
-    /**
-     * @param mixed $jobTitle
-     */
+
     public function setJobTitle($jobTitle): void
     {
-        $this->jobTilte = $jobTitle;
+        $this->jobTitle = $jobTitle;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->firstName ." ". $this->lastName;
     }
 
 }

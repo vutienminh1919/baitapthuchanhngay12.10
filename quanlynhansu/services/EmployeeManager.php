@@ -1,58 +1,74 @@
 <?php
-include "../models/Employee.php";
+include_once "../models/Employee.php";
+
 class EmployeeManager
 {
-    private $employees;
-    private $path = __DIR__ . "/employee.json";
+    private array $employees;
+    private string $path = __DIR__ . "/employee.json";
 
     public function __construct()
     {
         $this->employees = $this->load();
     }
 
-    public function getAllEmployee()
+    //hien thi danh sach nhan su
+
+    public function getAllEmployees(): array
     {
         return $this->employees;
     }
 
-    public function storeEmployee($employee)
+    //them nhan su moi
+
+    public function storeEmployees($employee)
     {
-        array_push($this->employees,$employee);
+        array_push($this->employees, $employee);
+        $this->save();
     }
 
-    /**
-     * @return array
-     */
-    public function getEmployees(): array
+    // xem thong tin chi tiet tung nhan vien
+
+    public function getEmployeeById($id)
     {
-        return $this->employees;
+        return $this->employees[$id];
     }
 
+    public function deleteEmployeeById($id)
+    {
+        array_splice($this->employees,$id,1);
+        $this->save();
+    }
+
+
+    //lu du lieu vao db
     public function save()
     {
         $dataJson = json_encode($this->employees);
-        file_put_contents($this->path,$dataJson);
+        file_put_contents($this->path, $dataJson);
     }
 
-    public function load()
+    public function load(): array
     {
         $dataJson = file_get_contents($this->path);
-        $data =  json_decode($dataJson, true);
+        $data = json_decode($dataJson, true);
         return $this->convertToObject($data);
     }
 
-    public function convertToObject($data)
+    public function convertToObject($data): array
     {
-        die();
         $employees = [];
-        foreach ($data as $e){
-            $employees = new Employee($e["fristname"],$e["lastname"],$e["birthdate"],$e["address"],e["jobTitle"]);
+        foreach ($data as $e) {
+            $employee = new Employee($e["firstName"], $e["lastName"], $e["birthDate"], $e["address"], $e["jobTitle"]);
+            $employees[] = $employee; /// array_push
         }
+        return $employees;
     }
 
     public function showLog($data)
     {
-
+        echo "<pre>";
+        var_dump($data);
+        die();
     }
 
 }
